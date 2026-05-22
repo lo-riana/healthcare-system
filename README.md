@@ -19,9 +19,11 @@ Projet de modélisation orientée objet (I2 ST2SDM 2026)
 ## Lancer le prototype Catalog
 
 ### Depuis le terminal
+```bash
 cd src
 javac catalog/*.java
 java catalog.Main
+```
 
 ## Lancer le prototype Appointment
 
