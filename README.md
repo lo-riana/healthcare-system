@@ -15,18 +15,17 @@ Projet de modélisation orientée objet (I2 ST2SDM 2026)
 ## Lancer le prototype User
 Depuis le terminal
 ```bash
-cd src
-javac -encoding UTF-8 auth/*.java
-java auth.Main
+cd healthcare-system
+javac -encoding UTF-8 -d out src/auth/*.java
+java -cp out auth.Main
 ```
 
 ## Lancer le prototype Catalog
 
 ### Depuis le terminal
 ```bash
-cd src
-javac catalog/*.java
-java catalog.Main
+javac -encoding UTF-8 -d out src/catalog/*.java
+java -cp out catalog.Main
 ```
 
 ## Lancer le prototype Appointment
