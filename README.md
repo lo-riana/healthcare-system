@@ -5,7 +5,7 @@ Projet de modélisation orientée objet (I2 ST2SDM 2026)
 ## Structure du projet
 ```
 /src
-├── /user           # Gestion des utilisateurs & authentification
+├── /auth           # Gestion des utilisateurs & authentification
 ├── /catalog        # Catalogue de cliniques & services médicaux
 ├── /appointment    # Prise de rendez-vous & disponibilités
 ├── /payment        # Facturation, paiement & tarification
@@ -13,20 +13,18 @@ Projet de modélisation orientée objet (I2 ST2SDM 2026)
 ```
 
 ## Lancer le prototype User
-Depuis le terminal
+## Depuis le terminal
 ```bash
-cd src
-javac -encoding UTF-8 auth/*.java
-java auth.Main
+javac -encoding UTF-8 -d out src/auth/*.java
+java -cp out auth.Main
 ```
 
 ## Lancer le prototype Catalog
 
 ### Depuis le terminal
 ```bash
-cd src
-javac catalog/*.java
-java catalog.Main
+javac -encoding UTF-8 -d out src/catalog/*.java
+java -cp out catalog.Main
 ```
 
 ## Lancer le prototype Appointment
