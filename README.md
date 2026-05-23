@@ -5,7 +5,7 @@ Projet de modélisation orientée objet (I2 ST2SDM 2026)
 ## Structure du projet
 ```
 /src
-├── /user           # Gestion des utilisateurs & authentification
+├── /auth           # Gestion des utilisateurs & authentification
 ├── /catalog        # Catalogue de cliniques & services médicaux
 ├── /appointment    # Prise de rendez-vous & disponibilités
 ├── /payment        # Facturation, paiement & tarification
