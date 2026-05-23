@@ -13,7 +13,7 @@ Projet de modélisation orientée objet (I2 ST2SDM 2026)
 ```
 
 ## Lancer le prototype User
-
+Depuis le terminal
 ```bash
 cd src
 javac -encoding UTF-8 auth/*.java
