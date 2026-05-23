@@ -32,8 +32,10 @@ java -cp out catalog.Main
 // A remplir
 
 ## Lancer le prototype Payment
-
-// A remplir
+```bash
+javac -encoding UTF-8 -d out src/payment/*.java
+java -cp out payment.Main
+```
 
 ## Lancer le prototype Notification
 
