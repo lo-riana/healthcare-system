@@ -14,7 +14,11 @@ Projet de modélisation orientée objet (I2 ST2SDM 2026)
 
 ## Lancer le prototype User
 
-// A remplir
+```bash
+cd src
+javac -encoding UTF-8 auth/*.java
+java auth.Main
+```
 
 ## Lancer le prototype Catalog
 
