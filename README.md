@@ -13,9 +13,8 @@ Projet de modélisation orientée objet (I2 ST2SDM 2026)
 ```
 
 ## Lancer le prototype User
-Depuis le terminal
+## Depuis le terminal
 ```bash
-cd healthcare-system
 javac -encoding UTF-8 -d out src/auth/*.java
 java -cp out auth.Main
 ```
