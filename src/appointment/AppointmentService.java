@@ -7,8 +7,11 @@ import java.util.UUID;
 
 public class AppointmentService {
     public Appointment book(Doctor doctor, Patient patient, TimeSlot slot) {
-        if (hasConflict(doctor, slot))
+        if (!doctor.getAgenda().isAvailable(slot))
             throw new IllegalStateException("Slot not available");
+
+        if (hasConflict(doctor, slot))
+            throw new IllegalStateException("Booking conflict");
 
         Appointment appt = new Appointment(
                 UUID.randomUUID().toString(), slot, doctor, patient

@@ -16,7 +16,7 @@ Projet de modélisation orientée objet (I2 ST2SDM 2026)
 ## Depuis le terminal
 ```bash
 javac -encoding UTF-8 -d out src/auth/*.java
-java -cp out auth.Main
+java -cp out Main
 ```
 
 ## Lancer le prototype Catalog

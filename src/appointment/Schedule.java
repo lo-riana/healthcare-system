@@ -21,8 +21,14 @@ public class Schedule {
         timeSlots.remove(timeSlot);
     }
 
-    public boolean isAvailable(TimeSlot timeSlot) {
-        return timeSlots.contains(timeSlot);
+    public boolean isAvailable(TimeSlot requested) {
+        for (TimeSlot s : timeSlots) {
+            if (!s.getStartTime().isAfter(requested.getStartTime())
+                    && !s.getEndTime().isBefore(requested.getEndTime())) {
+                return true;
+            }
+        }
+        return false;
     }
 
     public Doctor getDoctor() { return doctor; }

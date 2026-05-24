@@ -1,6 +1,7 @@
-package auth;
-
+import appointment.Appointment;
+import appointment.AppointmentService;
 import appointment.TimeSlot;
+import auth.*;
 
 import java.time.LocalDateTime;
 
@@ -9,8 +10,8 @@ public class Main {
     public static void main(String[] args) {
 
         PasswordEncoder encoder    = new SimplePasswordEncoder();
-        UserRepository  repository = new InMemoryUserRepository();
-        AuthService     auth       = new AuthService(repository, encoder);
+        UserRepository repository = new InMemoryUserRepository();
+        AuthService auth       = new AuthService(repository, encoder);
 
         sep("1 — Inscription des utilisateurs");
 
@@ -25,7 +26,7 @@ public class Main {
         smith.setAvailability(new TimeSlot(LocalDateTime.of(2026, 5,24,9, 0),
                 LocalDateTime.of(2026, 5,24,17, 0)));
         smith.setAvailability(new TimeSlot(LocalDateTime.of(2026, 5,25,9, 0),
-                LocalDateTime.of(2026, 5,24,17, 0)));
+                LocalDateTime.of(2026, 5,25,17, 0)));
 
         Admin root = (Admin) auth.register(
             Role.ADMIN, "admin@system.fr", "admin789",
@@ -96,6 +97,63 @@ public class Main {
         System.out.println("Alice active ? " + alice.isActive());
 
         root.assignRole(smith, Role.ADMIN);
+
+        sep("8 — AppointmentService : prise de rendez-vous");
+
+        AppointmentService appointmentService = new AppointmentService();
+
+        TimeSlot requestedSlot = new TimeSlot(
+                LocalDateTime.of(2026, 5, 24, 10, 0),
+                LocalDateTime.of(2026, 5, 24, 11, 0)
+        );
+
+        Appointment appt = appointmentService.book(smith, alice, requestedSlot);
+        System.out.println("RDV créé     : " + appt);
+        System.out.println("État initial : " + appt.getState().getClass().getSimpleName());
+
+        sep("9 — Cycle de vie du RDV (State pattern)");
+
+        appt.confirm();
+        System.out.println("Après confirm()  : " + appt.getState().getClass().getSimpleName());
+
+        appt.complete();
+        System.out.println("Après complete() : " + appt.getState().getClass().getSimpleName());
+
+        try {
+            appt.cancel();
+        } catch (IllegalStateException e) {
+            System.out.println("Cancel sur COMPLETED → ❌ " + e.getMessage());
+        }
+
+        sep("10 — Détection de conflit");
+
+        try {
+            appointmentService.book(smith, alice, requestedSlot);
+        } catch (IllegalStateException e) {
+            System.out.println("Double booking → ❌ " + e.getMessage());
+        }
+
+        TimeSlot otherSlot = new TimeSlot(
+                LocalDateTime.of(2026, 5, 24, 14, 0),
+                LocalDateTime.of(2026, 5, 24, 15, 0)
+        );
+        Appointment appt2 = appointmentService.book(smith, alice, otherSlot);
+        System.out.println("2ème RDV créé : " + appt2);
+
+        sep("11 — Annulation depuis SCHEDULED");
+
+        appt2.cancel();
+        System.out.println("Après cancel() : " + appt2.getState().getClass().getSimpleName());
+
+        try {
+            appt2.confirm();
+        } catch (IllegalStateException e) {
+            System.out.println("Confirm sur CANCELLED → ❌ " + e.getMessage());
+        }
+
+        sep("12 — Schedule de Smith");
+
+        System.out.println(smith.getAgenda());
     }
 
     private static void sep(String title) {

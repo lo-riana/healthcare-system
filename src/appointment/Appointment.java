@@ -1,5 +1,6 @@
 package appointment;
 
+import appointment.states.ScheduledState;
 import auth.Doctor;
 import auth.Patient;
 import payment.Paiement;
@@ -21,6 +22,7 @@ public class Appointment {
         this.slot = slot;
         this.doctor = doctor;
         this.patient = patient;
+        this.state = new ScheduledState();
     }
 
     // getters et setters
@@ -46,5 +48,16 @@ public class Appointment {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    @Override
+    public String toString() {
+        return "Appointment{" +
+                "id='"     + id                                    + '\'' +
+                ", doctor=" + doctor.getLastName()                     +
+                ", patient=" + patient.getFirstName()+ " " + patient.getLastName()                   +
+                ", slot="   + slot                                 +
+                ", state="  + state.getClass().getSimpleName()     +
+                '}';
     }
 }
