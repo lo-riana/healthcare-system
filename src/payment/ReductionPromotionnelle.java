@@ -1,4 +1,4 @@
-package payment.variation;
+package payment;
 
 public class ReductionPromotionnelle extends VariationPrix {
     private float taux;

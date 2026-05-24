@@ -1,6 +1,8 @@
 package auth;
 
-import java.util.List;
+import appointment.TimeSlot;
+
+import java.time.LocalDateTime;
 
 public class Main {
 
@@ -20,8 +22,10 @@ public class Main {
         Doctor smith = (Doctor) auth.register(
             Role.DOCTOR, "dr.smith@hospital.fr", "doc456",
             "John", "Smith", "Cardiologie", "LIC-2024-001");
-        smith.setAvailability("Lundi 09:00-12:00");
-        smith.setAvailability("Mercredi 14:00-17:00");
+        smith.setAvailability(new TimeSlot(LocalDateTime.of(2026, 5,24,9, 0),
+                LocalDateTime.of(2026, 5,24,17, 0)));
+        smith.setAvailability(new TimeSlot(LocalDateTime.of(2026, 5,25,9, 0),
+                LocalDateTime.of(2026, 5,24,17, 0)));
 
         Admin root = (Admin) auth.register(
             Role.ADMIN, "admin@system.fr", "admin789",

@@ -1,5 +1,9 @@
 package auth;
 
+import appointment.Appointment;
+import appointment.Schedule;
+import appointment.TimeSlot;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -7,7 +11,8 @@ public class Doctor extends User {
 
     private String       specialty;
     private final String       licenseNumber;
-    private final List<String> schedule;
+    private Schedule schedule;
+    private List<Appointment> appointments = new ArrayList<>();
 
     public Doctor(int id, String email, String passwordHash,
                   String firstName, String lastName,
@@ -15,16 +20,21 @@ public class Doctor extends User {
         super(id, email, passwordHash, Role.DOCTOR, firstName, lastName);
         this.specialty     = specialty;
         this.licenseNumber = licenseNumber;
-        this.schedule      = new ArrayList<>();
+        this.schedule      = new Schedule(this);
+        this.appointments = new ArrayList<>();
     }
 
-    public void setAvailability(String timeSlot) {
-        schedule.add(timeSlot);
+    public void setAvailability(TimeSlot timeSlot) {
+        schedule.addTimeSlot(timeSlot);
         System.out.println("[Doctor] Dr. " + getLastName() + " — créneau ajouté : " + timeSlot);
     }
 
-    public List<String> getAgenda() {
-        return List.copyOf(schedule);
+    public void addAppointment(Appointment appointment) {
+        appointments.add(appointment);
+    }
+
+    public Schedule getAgenda() {
+        return schedule;
     }
 
     @Override
