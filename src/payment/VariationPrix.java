@@ -2,5 +2,5 @@ package payment;
 
 public abstract class VariationPrix {
     
-    public abstract double appliquer(double montant);
+    public abstract float appliquer(float montant);
 }
