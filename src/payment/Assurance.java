@@ -2,6 +2,10 @@ package payment;
  
 public class Assurance extends ModePaiement {
     private int numeroAssure;
+
+    public Assurance(int numeroAssure) {
+        this.numeroAssure = numeroAssure;
+    }
  
     @Override
     public void valider() {
