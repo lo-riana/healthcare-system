@@ -1,10 +1,8 @@
 package payment;
 
-public class ModePaiement {
+public abstract class ModePaiement {
     protected int idMode;
 
-    public void valider() {
-        // logique de validation du mode de paiement
-    }
+    public abstract void valider() {}
     
 }
