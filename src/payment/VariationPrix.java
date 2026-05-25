@@ -1,9 +1,6 @@
 package payment;
 
-public class VariationPrix {
+public abstract class VariationPrix {
     
-    public void appliquer() {
-        // logique d'application de la variation de prix
-    }
-    // getters et setters
+    public abstract double appliquer(double montant);
 }
