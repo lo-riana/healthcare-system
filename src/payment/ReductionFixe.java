@@ -3,9 +3,13 @@ package payment;
 public class ReductionFixe extends VariationPrix {
     private float montant;
 
+    public ReductionFixe(float montant) {
+        this.montant = montant;
+    }
+
     @Override
-    public void appliquer() {
-        // logique d'application de la réduction fixe
+    public float appliquer(float montant) {
+        return montant - this.montant;
     }
 
     public float getMontant() { 
