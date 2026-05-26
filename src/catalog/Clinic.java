@@ -39,13 +39,6 @@ public class Clinic {
                 .collect(Collectors.toList());
     }
 
-    public void fixerMontantReduction(float montant) {
-        // logique de fixation du montant de la réduction
-    }
-    public void fixerTaux(float taux) {
-        // logique de fixation du taux de la réduction
-    }
-
     @Override
     public String toString() {
         return name + " (" + address + ")";
